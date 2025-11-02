@@ -1,0 +1,7 @@
+Comados Ejecutados
+
+Desde la raiz donde esta el archivo stress_20251102-005230.jtl
+
+"C:\Cargue_Estres\Davivienda\apache-jmeter-5.6.3\bin\jmeter.bat" ^
+¿Más?   -g "C:\Cargue_Estres\Davivienda\resultados\stress_20251102-005230.jtl" ^
+¿Más?   -o "C:\Cargue_Estres\Davivienda\resultados\dashboard_20251102"
