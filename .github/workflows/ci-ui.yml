@@ -1,0 +1,61 @@
+name: CI - UI (Serenity + Maven)
+
+on:
+  push:
+    branches: [ main, develop, feature/** ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-test-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+          cache: maven
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Show Chrome version
+        run: chrome --version
+
+      # Opcional: si usas WebDriverManager, evita descargar drivers en cada run
+      # - name: Cache WebDriverManager
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.cache/selenium
+      #     key: wdm-${{ runner.os }}-cache
+
+      - name: Build & Test (UI headless)
+        run: |
+          mvn -B -U clean verify \
+            -Dwebdriver.driver=chrome \
+            -Dchrome.switches="--headless=new --no-sandbox --disable-dev-shm-usage --window-size=1920,1080" \
+            -Dserenity.outputDirectory=target/site/serenity \
+            -Dserenity.take.screenshots=AFTER_EACH_STEP
+        env:
+          # Si tu framework lee URL/credenciales por variables:
+          # BASE_URL: "https://opensource-demo.orangehrmlive.com"
+          # UI_USER: "Admin"
+          # UI_PASS: "admin123"
+          MAVEN_OPTS: "-Xmx1g"
+
+      - name: Publicar reportes (Serenity + Surefire)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-ui-report
+          path: |
+            target/site/serenity/**
+            target/serenity/**
+            target/surefire-reports/**
+
