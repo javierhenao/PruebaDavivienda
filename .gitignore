@@ -1,0 +1,23 @@
+﻿# Maven / Build
+/target/
+/out/
+/build/
+
+# IDEs
+/.idea/
+/.vscode/
+/.settings/
+/.metadata/
+/*.iml
+.classpath
+.project
+
+# Reports / logs
+/serenity-reports/
+/reports/
+/test-output/
+*.log
+
+# SO
+.DS_Store
+Thumbs.db
