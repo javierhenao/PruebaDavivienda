@@ -28,6 +28,6 @@ Feature: Agrega un nuevo empleado y validar que se haya almacenado de manera cor
     Examples: 
     | username | password | nombreEmpleado | apellidoEmpleado |
       ##@externaldata@./src/test/resources/DataDriven/CrearValidarEmpleado/CrearValidarEmpleado.xlsx@Caso01
-|"Admin"|"admin123"|"Javier"|"Henao"|
+|"Admin"|"admin123"|"Leonardo"|"Henao"|
 
 

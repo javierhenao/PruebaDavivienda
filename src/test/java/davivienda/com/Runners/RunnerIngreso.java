@@ -15,7 +15,7 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @CucumberOptions(features ="src/test/resources/feature/"
 				,glue = "davivienda.com"
-				,tags = {"@CrearValidarEmpleadoExitoso"},
+				,tags = {"@CrearValidarEmpleado"},
 				monochrome= true)
 @RunWith(RunnerPersonalizado.class)
 public class RunnerIngreso {
